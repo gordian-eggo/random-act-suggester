@@ -2,6 +2,8 @@ import java.util.Random;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class RandomTODO {
 	
@@ -22,6 +24,7 @@ public class RandomTODO {
 
 	public RandomTODO() {
 		System.out.println("Starting program...\n\n");
+		// load_roster();
 		print_menu();
 		navigate_menu();
 	}
@@ -161,6 +164,42 @@ public class RandomTODO {
 
 	}
 
+	// Saves the roster of activities to an external file.
+	// TODO: assign roster.txt to todo_updates, or if that isn't possible find a workaround.
+	public void save_roster() {
+		try {
+				
+			FileWriter write_to_roster = new FileWriter(new File("roster.txt"));
+			PrintWriter print_roster = new PrintWriter(write_to_roster);
+
+			for (String activity : activities_roster) {
+				print_roster.print(activity + "\n");
+			}
+
+			print_roster.close();
+			todo_updates = new File("roster.txt");
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e);		
+		}
+	}
+
+	// Loads activities from an external file.
+	// TODO: Finish load function and ask if user wants to load a pre-existing roster file.
+	public void load_roster() {
+		try {
+
+			// todo_updates = new 
+
+			if (todo_updates.exists()) {
+				System.out.println("External file is here.");
+			}
+
+		} catch (Exception e) {
+			System.out.println("External file is not here or does not exist.\n");
+		}
+	}
+
 	// Prints menu
 	public void print_menu() {
 		System.out.println("===== RANDOM TO-DO =====");
@@ -173,7 +212,7 @@ public class RandomTODO {
 		System.out.print("What do you want to do? : ");
 	}
 
-	// Navigates the menu. You can include the print_menu code here, but I prefer not to. Looks cleaner for me.
+	// Navigates the menu. 
 	public void navigate_menu() {
 
 		Scanner picker = new Scanner(System.in);
@@ -200,6 +239,7 @@ public class RandomTODO {
 							break;
 	
 					case 0: System.out.println("\n\nExiting...");
+							save_roster();
 							break;
 	
 					default: System.out.println("Pick a number off the menu!");
