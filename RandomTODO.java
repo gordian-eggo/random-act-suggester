@@ -52,6 +52,7 @@ public class RandomTODO {
 		if (!activities_roster.isEmpty()) {
 			System.out.println();
 			for (String i : activities_roster) {
+				// System.out.println("counter: " + counter);
 				if (counter == 0) {
 					System.out.print(i);
 					counter++;
@@ -59,11 +60,11 @@ public class RandomTODO {
 					System.out.print("\t\t" + i);
 					counter++;
 				} else if (counter == 3) {
-					counter = 0;
-					System.out.println("\n" + i);
+					System.out.print("\n" + i);
+					counter = 1;
 				}
 			}
-			System.out.println();
+			System.out.println("\n");
 		} else {
 			System.out.println("\nNothing in here yet.\n\n");
 		}
